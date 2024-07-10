@@ -254,7 +254,7 @@ def retry_session(retries=1):
     retries = Retry(total=retries,
                 backoff_factor=0.1,
                 status_forcelist=[500, 502, 503, 504],
-                method_whitelist=frozenset(['GET', 'POST']))
+                allowed_methods=frozenset(['GET', 'POST']))
 
     session.mount('https://', HTTPAdapter(max_retries=retries))
     session.mount('http://', HTTPAdapter(max_retries=retries))
